@@ -5,31 +5,71 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="100dp"
         android:orientation="horizontal"
         android:padding="15dp">
 
-        <LinearLayout
+        <ImageView
+            android:id="@+id/iv_img"
+            android:layout_width="95dp"
+            android:layout_height="70dp"
+            android:layout_alignParentRight="true"
+            android:scaleType="centerCrop"
+            android:src="@drawable/icon_default_picture"/>
+
+        <TextView
+            android:id="@+id/tv_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical">
+            android:layout_alignParentLeft="true"
+            android:layout_marginRight="16dp"
+            android:layout_toLeftOf="@+id/iv_img"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:text="测试文字测试文字"
+            android:textColor="@color/textColor"
+            android:textSize="16sp"/>
 
-        </LinearLayout>
+        <TextView
+            android:id="@+id/tv_author"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:singleLine="true"
+            android:text="作者"
+            android:textColor="@color/secondary_text_color"
+            android:textSize="12sp"/>
 
-        <ImageView
+        <TextView
+            android:id="@+id/tv_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="16dp"
+            android:layout_toRightOf="@+id/tv_author"
+            android:text="1小时前"
+            android:textColor="@color/secondary_text_color"
+            android:textSize="12sp"/>
 
-            android:layout_width="100dp"
-            android:layout_height="70dp"
-            android:src="@drawable/shape_grey_bg"/>
+        <TextView
+            android:id="@+id/tv_comment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginRight="16dp"
+            android:layout_toLeftOf="@+id/iv_img"
+            android:singleLine="true"
+            android:text="10 评论"
+            android:textColor="@color/secondary_text_color"
+            android:textSize="12sp"/>
 
-    </LinearLayout>
+    </RelativeLayout>
 
     <View
-        android:background="@drawable/shape_grey_bg"
         android:layout_width="match_parent"
-        android:layout_height="1px"/>
+        android:layout_height="2px"
+        android:background="#d9d9d9"/>
 
 </LinearLayout>
