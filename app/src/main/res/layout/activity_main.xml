@@ -25,8 +25,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             tablayout:tabIndicatorColor="@color/colorPrimary"
-            tablayout:tabSelectedTextColor="@color/colorAccent"
-            tablayout:tabTextColor="@color/white"/>
+            tablayout:tabSelectedTextColor="@color/white"
+            tablayout:tabTextColor="@color/second_color"/>
     </android.support.design.widget.AppBarLayout>
 
     <RelativeLayout
@@ -39,9 +39,5 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
 
-        <!--<View-->
-        <!--android:layout_width="fill_parent"-->
-        <!--android:layout_height="@dimen/title_bar_shadow_height"-->
-        <!--android:background="@drawable/title_bar_shadow"/>-->
     </RelativeLayout>
 </android.support.design.widget.CoordinatorLayout>

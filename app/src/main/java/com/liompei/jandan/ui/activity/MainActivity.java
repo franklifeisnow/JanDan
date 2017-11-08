@@ -26,11 +26,7 @@ public class MainActivity extends BaseActivity {
     private AutoFragment mAutoFragment3;
     private AutoFragment mAutoFragment4;
 
-    private boolean isOneLoaded = true;  //第一个界面是否加载过
-    private boolean isTwoLoaded = false;  //第二个界面是否加载过
-    private boolean isThreeLoaded = false;  //第三个界面是否加载过
-    private boolean isFourLoaded = false;  //第四个界面是否加载过
-
+    private int nowCurrentItem = 0;
 
     @Override
     public int getLayoutId() {
@@ -42,10 +38,10 @@ public class MainActivity extends BaseActivity {
         mToolbar = findViewById(R.id.toolbar);
         mTabLayout = findViewById(R.id.tab_layout);
         mViewPager = findViewById(R.id.viewpager);
-        mAutoFragment1 = new AutoFragment();
-        mAutoFragment2 = new AutoFragment();
-        mAutoFragment3 = new AutoFragment();
-        mAutoFragment4 = new AutoFragment();
+        mAutoFragment1 = new AutoFragment().setType(0);
+        mAutoFragment2 = new AutoFragment().setType(1);
+        mAutoFragment3 = new AutoFragment().setType(2);
+        mAutoFragment4 = new AutoFragment().setType(3);
         tabNames = new String[]{"新鲜事", "无聊图", "妹子图", "段子"};
         fragments = new Fragment[]{mAutoFragment1, mAutoFragment2, mAutoFragment3, mAutoFragment4};
         mTabMainAdapter = new TabMainAdapter(getSupportFragmentManager(), tabNames, fragments);
@@ -57,51 +53,13 @@ public class MainActivity extends BaseActivity {
         mTabLayout.setupWithViewPager(mViewPager);
         mViewPager.setAdapter(mTabMainAdapter);
         mViewPager.setOffscreenPageLimit(tabNames.length);
-        mViewPager.setCurrentItem(0);
-        mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-            }
-
-            @Override
-            public void onPageSelected(int position) {
-                switch (position) {
-                    case 0:
-                        if (!isOneLoaded) {
-                            mAutoFragment1.update(position);
-                            isOneLoaded = true;
-                        }
-                        break;
-                    case 1:
-                        if (!isTwoLoaded) {
-                            mAutoFragment2.update(position);
-                            isTwoLoaded = true;
-                        }
-                        break;
-                    case 2:
-                        if (!isThreeLoaded) {
-                            mAutoFragment3.update(position);
-                            isThreeLoaded = true;
-                        }
-                        break;
-                    case 3:
-                        if (!isFourLoaded) {
-                            mAutoFragment4.update(position);
-                            isFourLoaded = true;
-                        }
-                        break;
-                }
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int state) {
-            }
-        });
+        mViewPager.setCurrentItem(nowCurrentItem);
     }
 
     @Override
     public void onEvent() {
-
     }
+
+
 
 }

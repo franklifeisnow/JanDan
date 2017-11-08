@@ -19,9 +19,12 @@ import com.trello.rxlifecycle2.components.support.RxFragment;
  * remark:
  */
 
-public abstract class BaseFragment extends RxFragment{
+public abstract class BaseFragment extends RxFragment {
 
     private View parentView;
+    private boolean isCreated;
+    protected boolean isVisible;
+    protected boolean isLazyed;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -33,15 +36,42 @@ public abstract class BaseFragment extends RxFragment{
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         parentView = inflater.inflate(getLayoutResId(), container, false);
+        initView(savedInstanceState);
+        initData();
         return parentView;
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        initView(savedInstanceState);
-        initData();
         onEvent();
+        isCreated=true;
+        onVisible();
+    }
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if (getUserVisibleHint()) {
+            isVisible = true;
+            onVisible();
+        } else {
+            isVisible = false;
+            onInvisible();
+        }
+    }
+
+    protected void onVisible() {
+        if (isVisible&&!isLazyed&&isCreated){
+            isLazyed = true;
+            lazyLoad();
+        }
+    }
+
+    protected void lazyLoad() {
+    }
+
+    protected void onInvisible() {
     }
 
     @Override
@@ -64,7 +94,7 @@ public abstract class BaseFragment extends RxFragment{
     protected abstract void onEvent();
 
     protected <T extends View> T findViewById(int resId) {
-        return  parentView.findViewById(resId);
+        return parentView.findViewById(resId);
     }
 
     protected Toolbar getToolbar(CharSequence title, boolean showHomeAsUp) {
