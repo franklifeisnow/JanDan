@@ -6,11 +6,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <!--加上可去阴影-->
+    <!--tablayout:elevation="0.0dp"-->
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        tablayout:elevation="0.0dp">
+        android:orientation="vertical">
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
@@ -24,7 +25,7 @@
             android:id="@+id/tab_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tablayout:tabIndicatorColor="@color/colorPrimary"
+            tablayout:tabIndicatorColor="@color/white"
             tablayout:tabSelectedTextColor="@color/white"
             tablayout:tabTextColor="@color/second_color"/>
     </android.support.design.widget.AppBarLayout>

@@ -71,7 +71,7 @@ public class HttpRequest {
 
     //新鲜事
     public void news(BaseFragment baseFragment, int page, HttpCallback<NewsBean> httpCallback) {
-        Observable newsBeanObservable = mHttpService.news( page)
+        Observable newsBeanObservable = mHttpService.news(page)
                 .subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -88,48 +88,10 @@ public class HttpRequest {
         newsBeanObservable.subscribe(new MyObserver<NewsBean>(httpCallback));
     }
 
-    //无聊图
-    public void pic(BaseFragment baseFragment, int page, HttpCallback<OtherBean> httpCallback) {
-        Observable newsBeanObservable = mHttpService.other("jandan.get_pic_comments", page)
-                .subscribeOn(Schedulers.io())
-                .unsubscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .filter(new Predicate<OtherBean>() {
-                    @Override
-                    public boolean test(OtherBean otherBean) throws Exception {
-                        if ("ok".equals(otherBean.getStatus())) {
-                            return true;
-                        }
-                        return false;
-                    }
-                })
-                .compose(RxLifecycle.bindUntilEvent(baseFragment.lifecycle(), FragmentEvent.DESTROY));
-        newsBeanObservable.subscribe(new MyObserver<OtherBean>(httpCallback));
-    }
 
-    //妹子图
-    public void ooxx(BaseFragment baseFragment, int page, HttpCallback<OtherBean> httpCallback) {
-        Observable newsBeanObservable = mHttpService.other("jandan.get_ooxx_comments", page)
-                .subscribeOn(Schedulers.io())
-                .unsubscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .filter(new Predicate<OtherBean>() {
-                    @Override
-                    public boolean test(OtherBean otherBean) throws Exception {
-                        if ("ok".equals(otherBean.getStatus())) {
-                            return true;
-                        }
-                        return false;
-                    }
-                })
-                .compose(RxLifecycle.bindUntilEvent(baseFragment.lifecycle(), FragmentEvent.DESTROY));
-        newsBeanObservable.subscribe(new MyObserver<OtherBean>(httpCallback));
-
-    }
-
-    //段子
-    public void jokes(BaseFragment baseFragment, int page, HttpCallback<OtherBean> httpCallback) {
-        Observable newsBeanObservable = mHttpService.other("jandan.get_duan_comments", page)
+    //无聊图 妹子图 段子
+    public void other(BaseFragment baseFragment, String api, int page, HttpCallback<OtherBean> httpCallback) {
+        Observable newsBeanObservable = mHttpService.other(api, page)
                 .subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

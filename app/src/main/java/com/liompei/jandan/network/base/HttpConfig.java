@@ -11,4 +11,7 @@ public class HttpConfig {
 
     public static int HTTP_TIME_OUT=3000;  //超时
     public static String BASE_URL="http://i.jandan.net/";
+    public static String API_PIC="jandan.get_pic_comments";
+    public static String API_OOXX="jandan.get_ooxx_comments";
+    public static String API_JOKES="jandan.get_duan_comments";
 }
