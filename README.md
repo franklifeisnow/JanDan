@@ -3,10 +3,7 @@
 开发中...目前界面已经可以以假乱真了，我寄几都分不清真假
 
 上图
-<img src="/images/jd_img_news.png" width="50%" height="50%"/>
-<img src="/images/jd_img_pics.png" />
-<img src="/images/jd_img_ooxx.png" />
-<img src="/images/jd_img_jokes.png" />
+<img src="/images/jd_img_news.png" width="25%" height="25%"/><img src="/images/jd_img_pics.png" width="25%" height="25%"/><img src="/images/jd_img_ooxx.png" width="25%" height="25%"/><img src="/images/jd_img_jokes.png" width="25%" height="25%"/>
 <img src="/images/jd.gif" />
 
 ----
