@@ -12,6 +12,7 @@ import com.liompei.jandan.R;
 import com.liompei.jandan.base.BaseFragment;
 import com.liompei.jandan.bean.OtherBean;
 import com.liompei.jandan.contract.OtherContract;
+import com.liompei.jandan.listener.OnItemChildClickListener;
 import com.liompei.jandan.network.base.HttpConfig;
 import com.liompei.jandan.presenter.OtherPresenter;
 import com.liompei.jandan.ui.adapter.PictureAdapter;
@@ -53,7 +54,22 @@ public class PicFragment extends BaseFragment implements OtherContract.View, Swi
         mPresenter = new OtherPresenter(this, this);
         mPicAdapter = new PictureAdapter();
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getBaseActivity()));
-        mRecyclerView.setAdapter(mPicAdapter);
+        mPicAdapter.bindToRecyclerView(mRecyclerView);
+        mPicAdapter.setOnItemChildClickListener(new OnItemChildClickListener() {
+            @Override
+            public void onItemChildClick(View view, int position) {
+                switch (view.getId()) {
+                    case R.id.m_max_view:
+                        if (mPicAdapter.getDataList().get(position).getPics().get(0).endsWith(".gif")) {
+//                            GlideUtil.loadPictureGif(myOnlyHolder.mMyMaxImageView.getContext(), picUrl, myOnlyHolder.mMyMaxImageView);
+                        } else {
+
+                        }
+
+                        break;
+                }
+            }
+        });
     }
 
     @Override

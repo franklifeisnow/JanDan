@@ -3,6 +3,7 @@ package com.liompei.jandan.util;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.support.annotation.Nullable;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
@@ -28,17 +29,23 @@ public class GlideUtil {
     }
 
     public static void loadPicture(Context context, @Nullable Object url, final ImageView imageView) {
-
         GlideApp.with(context)
                 .asBitmap()
                 .load(url)
+                .placeholder(R.drawable.icon_default_picture)
                 .into(new SimpleTarget<Bitmap>() {
                     @Override
                     public void onResourceReady(Bitmap resource, Transition<? super Bitmap> transition) {
-                        int height = (int) getBitmapHeight(resource, imageView.getWidth());
-                        Zx.d("计算高度填充进imageView" + height);
-                        imageView.setLayoutParams(new RelativeLayout.LayoutParams(imageView.getWidth(), height));
                         imageView.setImageBitmap(resource);
+                        imageView.requestLayout();
+                        Zx.d("原图 宽 " + resource.getWidth() + ",高" + resource.getHeight() + "图片宽" + imageView.getWidth());
+                        int height = (int) getBitmapHeight(resource, imageView.getWidth());
+                        Zx.i("计算后 宽" + imageView.getWidth() + ",高" + height);
+                        if (height == 0) {
+                            imageView.setLayoutParams(new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 700));
+                        } else {
+                            imageView.setLayoutParams(new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, height));
+                        }
                     }
                 });
     }
@@ -46,8 +53,8 @@ public class GlideUtil {
     public static void loadPictureGif(Context context, @Nullable Object url, final ImageView imageView) {
         GlideApp.with(context)
                 .asGif()
+                //.dontAnimate()
                 .load(url)
-                .dontAnimate()
                 .into(imageView);
     }
 

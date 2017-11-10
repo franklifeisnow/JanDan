@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.liompei.jandan.R;
 import com.liompei.jandan.bean.OtherBean;
+import com.liompei.jandan.listener.OnItemChildClickListener;
 import com.liompei.jandan.util.GlideUtil;
 import com.liompei.jandan.util.TimeUtil;
 import com.liompei.jandan.view.MyGridView;
@@ -30,6 +31,16 @@ import java.util.List;
 
 public class PictureAdapter extends RecyclerView.Adapter<PictureAdapter.BaseHolder> {
 
+    private RecyclerView mRecyclerView;
+
+    public RecyclerView getRecyclerView() {
+        return mRecyclerView;
+    }
+
+    public void setRecyclerView(RecyclerView recyclerView) {
+        mRecyclerView = recyclerView;
+    }
+
     private List<OtherBean.CommentsBean> mCommentsBeanList;
 
     public PictureAdapter() {
@@ -46,7 +57,7 @@ public class PictureAdapter extends RecyclerView.Adapter<PictureAdapter.BaseHold
     }
 
     @Override
-    public void onBindViewHolder(BaseHolder holder, int position) {
+    public void onBindViewHolder(BaseHolder holder, final int position) {
         OtherBean.CommentsBean commentsBean = mCommentsBeanList.get(position);
         List<String> pics = commentsBean.getPics();
         holder.tv_author.setText(commentsBean.getComment_author());
@@ -69,15 +80,16 @@ public class PictureAdapter extends RecyclerView.Adapter<PictureAdapter.BaseHold
             final String picUrl = pics.get(0);
             if (picUrl.endsWith(".gif")) {
                 myOnlyHolder.iv_type_gif.setVisibility(View.VISIBLE);
-                myOnlyHolder.mMyMaxImageView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        GlideUtil.loadPictureGif(myOnlyHolder.mMyMaxImageView.getContext(), picUrl, myOnlyHolder.mMyMaxImageView);
-                    }
-                });
             } else {
                 myOnlyHolder.iv_type_gif.setVisibility(View.GONE);
             }
+            myOnlyHolder.mMyMaxImageView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    myOnlyHolder.iv_type_gif.setVisibility(View.GONE);
+                    mOnItemChildClickListener.onItemChildClick(view, position);
+                }
+            });
             GlideUtil.loadPicture(myOnlyHolder.mMyMaxImageView.getContext(), picUrl, myOnlyHolder.mMyMaxImageView);
         } else if (holder instanceof MyGvHolder) {
             MyGvHolder myGvHolder = (MyGvHolder) holder;
@@ -129,6 +141,25 @@ public class PictureAdapter extends RecyclerView.Adapter<PictureAdapter.BaseHold
     public int getItemViewType(int position) {
         return mCommentsBeanList.get(position).getPics().size();
     }
+
+    public List<OtherBean.CommentsBean> getDataList() {
+        return mCommentsBeanList;
+    }
+
+    private OnItemChildClickListener mOnItemChildClickListener;
+
+    public void setOnItemChildClickListener(OnItemChildClickListener onItemChildClickListener) {
+        mOnItemChildClickListener = onItemChildClickListener;
+    }
+
+    public void bindToRecyclerView(RecyclerView recyclerView) {
+        if (getRecyclerView() != null) {
+            throw new RuntimeException("不需要再次绑定");
+        }
+        setRecyclerView(recyclerView);
+        getRecyclerView().setAdapter(this);
+    }
+
 
     class MyOnlyHolder extends BaseHolder {
         MyMaxImageView mMyMaxImageView;
