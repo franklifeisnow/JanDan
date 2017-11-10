@@ -1,7 +1,12 @@
-## 高仿煎蛋客户端,2017最新版,MVP+Retrofit+RxJava+OkHttp
+## 高仿煎蛋客户端,2017最新版
+
+MVP+Retrofit+RxJava+OkHttp
 ----
+
 项目框架使用MVP,网络请求Retrofit+RxJava+OkHttp
+
 在这里你将学习到
+
 ====
 - Android Studio开发Android的基本配置
 - Fragment懒加载
