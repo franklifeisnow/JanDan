@@ -5,6 +5,8 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.AppCompatImageView;
 import android.util.AttributeSet;
 
+import com.liompei.zxlog.Zx;
+
 /**
  * Created by Liompei
  * time : 2017/11/9 15:58
@@ -29,10 +31,11 @@ public class MyMaxImageView extends AppCompatImageView {
         super(context, attrs, defStyleAttr);
     }
 
-//    @Override
-//    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-//        Zx.d("onMeasure");
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        Zx.d("onMeasure");
 //        if (mHeight != 0) {
+////            Zx.d(mHeight);
 //            int sizeWidth = MeasureSpec.getSize(widthMeasureSpec);
 //            int sizeHeight = MeasureSpec.getSize(heightMeasureSpec);   //当前高
 //            int resultHeight = (int) Math.max(mHeight, sizeHeight);  //当前的高度和缩放的高度哪个大取哪个值
@@ -42,11 +45,11 @@ public class MyMaxImageView extends AppCompatImageView {
 //            }
 //            setMeasuredDimension(sizeWidth, resultHeight);
 //        } else {
-//            super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+            super.onMeasure(widthMeasureSpec, heightMeasureSpec);
 //        }
-//    }
+    }
 //
-//    //设置一个位图作为这个ImageView的内容
+    //设置一个位图作为这个ImageView的内容
 //    @Override
 //    public void setImageBitmap(Bitmap bm) {
 //        Zx.d("setImageBitmap");
@@ -67,7 +70,7 @@ public class MyMaxImageView extends AppCompatImageView {
 //        requestLayout();  //重新测量
 //    }
 //
-//    //拿到图片缩放后的高度
+    //拿到图片缩放后的高度
 //    private void getBitmapHeight(Bitmap bitmap) {
 //        float bitmapWidth = bitmap.getWidth();
 //        float bitmapHeight = bitmap.getHeight();

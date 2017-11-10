@@ -2,9 +2,14 @@ package com.liompei.jandan.ui.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.RecyclerView;
+import android.widget.ProgressBar;
 
 import com.liompei.jandan.R;
 import com.liompei.jandan.base.BaseFragment;
+import com.liompei.jandan.contract.OtherContract;
+import com.liompei.jandan.ui.adapter.PictureAdapter;
 
 /**
  * Created by Liompei
@@ -14,6 +19,16 @@ import com.liompei.jandan.base.BaseFragment;
  */
 
 public class OoxxFragment extends BaseFragment {
+
+    private SwipeRefreshLayout mRefreshLayout;
+    private RecyclerView mRecyclerView;
+    private ProgressBar mProgressBar;
+
+    private OtherContract.Presenter mPresenter;
+    private PictureAdapter mPicAdapter;
+
+    private int mPage;
+
     @Override
     public int getLayoutResId() {
         return R.layout.fragment_auto;

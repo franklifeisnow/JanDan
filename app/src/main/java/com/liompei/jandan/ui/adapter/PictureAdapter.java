@@ -50,7 +50,12 @@ public class PictureAdapter extends RecyclerView.Adapter<PictureAdapter.BaseHold
         OtherBean.CommentsBean commentsBean = mCommentsBeanList.get(position);
         List<String> pics = commentsBean.getPics();
         holder.tv_author.setText(commentsBean.getComment_author());
-        holder.tv_content.setText(commentsBean.getText_content());
+        if (null == commentsBean.getText_content() || "".equals(commentsBean.getText_content())) {
+            holder.tv_content.setVisibility(View.GONE);
+        } else {
+            holder.tv_content.setVisibility(View.VISIBLE);
+            holder.tv_content.setText(commentsBean.getText_content());
+        }
         holder.tv_like.setText(commentsBean.getVote_positive());
         holder.tv_un_like.setText(commentsBean.getVote_negative());
         holder.tv_comment.setText("吐槽 " + commentsBean.getSub_comment_count());
@@ -60,14 +65,20 @@ public class PictureAdapter extends RecyclerView.Adapter<PictureAdapter.BaseHold
             e.printStackTrace();
         }
         if (holder instanceof MyOnlyHolder) {
-            MyOnlyHolder myOnlyHolder = (MyOnlyHolder) holder;
-            String picUrl = pics.get(0);
+            final MyOnlyHolder myOnlyHolder = (MyOnlyHolder) holder;
+            final String picUrl = pics.get(0);
             if (picUrl.endsWith(".gif")) {
                 myOnlyHolder.iv_type_gif.setVisibility(View.VISIBLE);
+                myOnlyHolder.mMyMaxImageView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        GlideUtil.loadPictureGif(myOnlyHolder.mMyMaxImageView.getContext(), picUrl, myOnlyHolder.mMyMaxImageView);
+                    }
+                });
             } else {
                 myOnlyHolder.iv_type_gif.setVisibility(View.GONE);
             }
-            GlideUtil.load(myOnlyHolder.mMyMaxImageView.getContext(), picUrl, myOnlyHolder.mMyMaxImageView);
+            GlideUtil.loadPicture(myOnlyHolder.mMyMaxImageView.getContext(), picUrl, myOnlyHolder.mMyMaxImageView);
         } else if (holder instanceof MyGvHolder) {
             MyGvHolder myGvHolder = (MyGvHolder) holder;
             Zx.d("多个图片集合");
