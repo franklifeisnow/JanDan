@@ -1,6 +1,14 @@
 ## 高仿煎蛋客户端,2017最新版
 
-开发中...
+开发中...目前界面已经可以以假乱真了，我寄几都分不清真假
+
+上图
+![新鲜事](/images/jd_img_news.png)
+![无聊图](/images/jd_img_pics.png)
+![妹子图](/images/jd_img_ooxx.png)
+![段子](/images/jd_img_jokes.png)
+![动起来](/images/jd.gif)
+
 ----
 
 项目框架使用MVP,网络请求Retrofit+RxJava+OkHttp
