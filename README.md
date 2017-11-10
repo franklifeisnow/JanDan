@@ -22,6 +22,9 @@
 - RecyclerView的item分类，嵌套GridView
 - 使用LeakCanary检测内存泄露
 ----
+### 声明
+  项目接口抓取自[煎蛋](http://jandan.net/)
+  本项目为开发学习使用，禁止用于商业项目
 ## 关于我
 [微博](http://weibo.com/beiliming)
 
@@ -34,3 +37,12 @@
 [about.me](https://about.me/beiliming)
 
 ~~[liompei.com](http://liompei.com/)~~
+## 使用到的开源框架
++ [MVPHelper](https://github.com/githubwing/MVPHelper)
++ [Retrofit](https://github.com/square/retrofit)
++ [RxJava](https://github.com/ReactiveX/RxJava)
++ [OkHttp](https://github.com/square/okhttp)
++ [RxLifecycle](https://github.com/trello/RxLifecycle)
++ [Glide](https://github.com/bumptech/glide)
++ [Leakcanary](https://github.com/square/leakcanary)
++ [ZxLog](https://github.com/liompei/Zx)
