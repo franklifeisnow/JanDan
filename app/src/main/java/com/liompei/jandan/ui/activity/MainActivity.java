@@ -1,10 +1,15 @@
 package com.liompei.jandan.ui.activity;
 
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
-import android.support.v7.widget.Toolbar;
+import android.support.v7.app.AlertDialog;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import com.liompei.jandan.R;
 import com.liompei.jandan.base.BaseActivity;
@@ -14,9 +19,11 @@ import com.liompei.jandan.ui.fragment.NewsFragment;
 import com.liompei.jandan.ui.fragment.OoxxFragment;
 import com.liompei.jandan.ui.fragment.PicFragment;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+
 public class MainActivity extends BaseActivity {
 
-    private Toolbar mToolbar;
     private TabLayout mTabLayout;
     private ViewPager mViewPager;
 
@@ -38,7 +45,7 @@ public class MainActivity extends BaseActivity {
 
     @Override
     public void initViews(Bundle savedInstanceState) {
-        mToolbar = findViewById(R.id.toolbar);
+        getToolbar("煎蛋", false);
         mTabLayout = findViewById(R.id.tab_layout);
         mViewPager = findViewById(R.id.viewpager);
         mNewsFragment = new NewsFragment();
@@ -52,7 +59,6 @@ public class MainActivity extends BaseActivity {
 
     @Override
     public void initData() {
-        mToolbar.setTitle("煎蛋");
         mTabLayout.setupWithViewPager(mViewPager);
         mViewPager.setAdapter(mTabMainAdapter);
         mViewPager.setOffscreenPageLimit(tabNames.length);
@@ -63,6 +69,37 @@ public class MainActivity extends BaseActivity {
     public void onEvent() {
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_add:
 
+                break;
+            case R.id.action_about_me:
+                new AlertDialog.Builder(this)
+                        .setTitle("Liompei")
+                        .setMessage("https://github.com/liompei")
+                        .setPositiveButton("支持我", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                try {
+                                    String alipayqr = "alipayqr://platformapi/startapp?saId=10000007&clientVersion=3.7.0.0718&qrcode=" + URLEncoder.encode("HTTPS://QR.ALIPAY.COM/FKX05878UGST3IDEDHAC5A", "utf-8");
+                                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(alipayqr));
+                                    startActivity(intent);
+                                } catch (UnsupportedEncodingException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        })
+                        .show();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 }
