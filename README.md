@@ -1,6 +1,6 @@
 ## 高仿煎蛋客户端,2017最新版
 
-MVP+Retrofit+RxJava+OkHttp
+开发中...
 ----
 
 项目框架使用MVP,网络请求Retrofit+RxJava+OkHttp
