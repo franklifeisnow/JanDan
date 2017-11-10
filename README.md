@@ -4,11 +4,11 @@
 
 上图
 
-<img src="/images/jd_img_news.png" width="25%" height="25%"/><img src="/images/jd_img_pics.png" width="25%" height="25%"/>
+<img src="/images/jd_img_news.png" width="35%" height="35%"/><img src="/images/jd_img_pics.png" width="35%" height="35%"/>
 
-<img src="/images/jd_img_ooxx.png" width="25%" height="25%"/><img src="/images/jd_img_jokes.png" width="25%" height="25%"/>
+<img src="/images/jd_img_ooxx.png" width="35%" height="35%"/><img src="/images/jd_img_jokes.png" width="35%" height="35%"/>
 
-<img src="/images/jd.gif" width="25%" height="25%"/>
+<img src="/images/jd.gif" width="50%" height="50%"/>
 
 ----
 
