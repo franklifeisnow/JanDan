@@ -3,11 +3,12 @@
 开发中...目前界面已经可以以假乱真了，我寄几都分不清真假
 
 上图
-![新鲜事](/images/jd_img_news.png)
-![无聊图](/images/jd_img_pics.png)
-![妹子图](/images/jd_img_ooxx.png)
-![段子](/images/jd_img_jokes.png)
-![动起来](/images/jd.gif)
+![新鲜事](/images/jd_img_news.png =540x960)
+![无聊图](/images/jd_img_pics.png =540x960)
+![妹子图](/images/jd_img_ooxx.png =540x960)
+![段子](/images/jd_img_jokes.png =540x960)
+
+![动起来](/images/jd.gif =540x960)
 
 ----
 
