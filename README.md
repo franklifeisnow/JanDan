@@ -7,7 +7,6 @@ MVP+Retrofit+RxJava+OkHttp
 
 在这里你将学习到
 
-====
 - Android Studio开发Android的基本配置
 - Fragment懒加载
 - MVP架构的使用和代码复用
